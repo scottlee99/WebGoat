@@ -88,6 +88,12 @@ public class CommentsCache {
     var jc = JAXBContext.newInstance(Comment.class);
     var xif = XMLInputFactory.newInstance();
 
+    // DTD를 완전히 비활성화
+    xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+    
+    // 외부 엔티티 비활성화 
+    xif.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
+          
     // TODO fix me disabled for now.
     if (securityEnabled) {
       xif.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, ""); // Compliant
